@@ -1,0 +1,76 @@
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2.sml";
+[opening hw2.sml]
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:15.20-15.42 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * 'Z
+  operand:         string list
+  in expression:
+    remove_option xs'
+hw2provided.sml:16.14-16.35 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * 'Z
+  operand:         string list
+  in expression:
+    remove_option xs'
+hw2provided.sml:14.18-16.36 Error: types of if branches do not agree [tycon mismatch]
+  then branch: _ list list option
+  else branch: string list option
+  in expression:
+    if same_string (s,x)
+    then SOME (nil :: remove_option xs')
+    else SOME (x :: remove_option xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:14.18-16.32 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string
+  operand:         string * 'Z list
+  in expression:
+    same_string (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:16.9-16.32 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string list
+  operand:         string * 'Z list list
+  in expression:
+    x :: remove_option (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished

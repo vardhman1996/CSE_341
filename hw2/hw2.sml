@@ -1,0 +1,234 @@
+(* Vardhman Mehta 
+   1428251
+   mehtav@uw.edu *)
+(* if you use this function to compare two strings (returns true if the same
+   string), then you avoid several of the functions in problem 1 having
+   polymorphic types that may be confusing *)
+fun same_string(s1 : string, s2 : string) =
+    s1 = s2
+
+(* Problem 1a *)
+fun remove_option (s, xs) =
+  let
+      fun remove_string (s, xs) = 
+	case xs of
+	    [] => []
+	  | x::xs' => if same_string(s, x)
+		      then xs'
+		      else x::remove_string(s, xs')
+      val strList = remove_string(s,xs)
+  in
+      if strList = xs then NONE else SOME strList
+  end
+
+(* Problem 1b *)
+fun all_substitutions1 (xss, s) =
+  case xss of
+      [] => []
+    | xs::xss' =>
+      let
+	  fun find_in_one_string (s, xs) =
+	    case remove_option(s, xs) of
+		NONE=> []
+	      | SOME xs => xs
+	  val strList = find_in_one_string(s,xs)
+      in
+	  strList @ all_substitutions1(xss', s)
+      end
+
+(* Problem 1c *)
+fun all_substitutions2 (xss, s) =
+  let
+      fun get_dup(lists, matched_list) =
+	case lists of
+	    [] => matched_list
+	  | x::x'  =>
+	    let
+		val result = remove_option(s,x)
+	    in
+		case result of
+		    NONE => get_dup(x', matched_list)
+		  | SOME xs => get_dup(x', matched_list @ xs)
+	    end		
+  in
+      get_dup(xss, [])
+  end
+      
+(* Problem 1d *)
+fun similar_names (xss, {first:string,middle:string,last:string}) =
+  let
+      val getList = first::all_substitutions1(xss, first)
+
+      fun helper(getList) =
+	case getList of
+	  [] => []
+	| x::xs' => {first=x,middle=middle,last=last}::helper(xs')
+
+  in 
+      helper(getList)
+  end
+      
+(* you may assume that Num is always used with values 2, 3, ..., 10
+   though it will not really come up *)
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Jack | Queen | King | Ace | Num of int 
+type card = rank * suit
+
+datatype color = Red | Black
+datatype move = Discard of card | Draw 
+
+exception IllegalMove
+
+(* put your solutions for problem 2 here *)
+
+(* Problem 2a *)
+fun card_color (card) =
+  case card of
+      (_, Spades) => Black
+    | (_, Clubs) => Black
+    | (_, Hearts) => Red
+    | (_, Diamonds) => Red
+			   
+(* Problem 2b *)			   
+fun card_value (card) =
+  case card of
+      (Jack, _) => 10
+    | (Queen, _) => 10
+    | (King, _) => 10
+    | (Ace, _) => 11
+    | (Num n, _) => n 
+
+(* Problem 2c *)			
+fun remove_card (cs, c, e) =
+  let
+      fun remove(cs, c) =
+	case cs of
+	    [] => []
+	  | x::cs' => if x = c
+		      then cs'
+		      else x::remove(cs', c)
+
+      val result = remove(cs, c)
+  in
+      if result = cs then raise e else result
+  end
+
+(* Problem 2d *)
+fun all_same_color (cs) =
+  case cs of
+      [] => true
+    | x::[] => true 
+    | x::y::cs' => if card_color(x) = card_color(y)
+		   then all_same_color(y::cs')
+		   else false
+(* Problem 2e *)
+fun sum_cards (cs) =
+  let
+      fun get_sum (card_list, sum) =
+	case card_list of
+	    [] => sum
+	  | x::card_list' => get_sum(card_list', sum + card_value(x))
+  in
+      get_sum(cs, 0)
+  end
+
+fun get_pre (sum, goal) =
+	if sum > goal
+	then 5 * (sum - goal)
+	else goal - sum;
+      
+(* Problem 2f *)
+fun score (cs, goal) =
+  let
+      val sum = sum_cards(cs)
+      val pre = get_pre (sum, goal)
+  in
+      if all_same_color(cs)
+      then pre div 2
+      else pre
+  end 
+
+(* Problem 2g *)
+fun officiate (card_list, move_list, goal) =
+  let
+      fun current_game (card_list, move_list, held_cards) =
+	case move_list of
+	    [] => score(held_cards, goal)
+	  | move::move_list' => case move of
+				    Discard card => current_game(card_list, move_list', remove_card(held_cards, card, IllegalMove))
+				  | Draw => case card_list of
+						[] => score(held_cards, goal)
+					      | card::card_list' =>
+						let
+						    val held_cards' = card::held_cards
+						in
+						    if sum_cards(held_cards') > goal
+						    then score(held_cards', goal)
+						    else current_game(card_list', move_list', held_cards')
+						end
+  in
+      current_game(card_list, move_list, [])
+  end
+
+
+(* Problem 1 *)
+fun sum_with_aces (cs) =
+  let
+      fun count (card_list, counter, acc) =
+	case card_list of
+	    [] => (counter, acc)
+	  | card::card_list' =>
+	    if card_value(card) = 11
+	    then count(card_list', counter + 1, acc + 11)
+	    else count(card_list', counter, acc + card_value(card))
+
+      fun possibilities (counter, sum) =
+	if counter = 0
+	then sum::[]
+	else sum::possibilities(counter - 1, sum - 10)
+
+  in
+      possibilities(count(cs, 0, 0))
+  end
+
+(* ------ Challenge problem 1 -------- *)
+fun list_min (list) =
+  case list of
+      [] => raise List.Empty
+    | x::[] => x
+    | x::x' => Int.min(x, list_min(x'))
+      
+fun score_challenge (cs, goal) =
+  let
+      val list_sum = sum_with_aces(cs)
+      fun before_score (list) =
+	case list of
+	    [] => []
+	  | x::x' => get_pre(x, goal)::before_score(x')  
+  in
+      if all_same_color(cs)
+      then list_min(before_score(list_sum)) div 2
+      else list_min(before_score(list_sum))
+  end
+
+(* Problem 3a *)
+fun officiate_challenge (card_list, move_list, goal) =
+  let
+      fun current_game (card_list, move_list, held_cards) =
+	case move_list of
+	    [] => score_challenge(held_cards, goal)
+	  | move::move_list' => case move of
+				    Discard card => current_game(card_list, move_list', remove_card(held_cards, card, IllegalMove))
+				  | Draw => case card_list of
+						[] => score_challenge(held_cards, goal)
+					      | card::card_list' =>
+						let
+						    val held_cards' = card::held_cards
+						in
+						    if list_min(sum_with_aces(held_cards')) > goal
+						    then score_challenge(held_cards', goal)
+						    else current_game(card_list', move_list', held_cards')
+						end
+  in
+      current_game(card_list, move_list, [])
+  end

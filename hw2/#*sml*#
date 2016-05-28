@@ -1,0 +1,639 @@
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2.sml";
+[opening hw2.sml]
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+val it = () : unit
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:15.20-15.42 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * 'Z
+  operand:         string list
+  in expression:
+    remove_option xs'
+hw2provided.sml:16.14-16.35 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * 'Z
+  operand:         string list
+  in expression:
+    remove_option xs'
+hw2provided.sml:14.18-16.36 Error: types of if branches do not agree [tycon mismatch]
+  then branch: _ list list option
+  else branch: string list option
+  in expression:
+    if same_string (s,x)
+    then SOME (nil :: remove_option xs')
+    else SOME (x :: remove_option xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:14.18-16.32 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string
+  operand:         string * 'Z list
+  in expression:
+    same_string (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:16.9-16.32 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string list
+  operand:         string * 'Z list list
+  in expression:
+    x :: remove_option (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val tp = fn : 'a list -> 'a list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- tp([1,2,3,4])
+= ;
+val it = [1,2,3,4] : int list
+- val it = () : unit
+- = stdIn:5.1 Error: unbound type constructor: -
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:16.9-16.33 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: string * string list
+  operand:         string * 'Z list list
+  in expression:
+    x :: remove_option (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+-   in expression:
+    x :: remove_option (s,xs')
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- = = = stdIn:1.4-1.18 Error: syntax error: deleting  IN ID COLON
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list
+val tp = fn : 'a list -> 'a list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- = = = stdIn:5.1 Error: unbound type constructor: -
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list
+val tp = fn : 'a list -> 'a list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- remove_option("b", ["a","b","c","d"])
+= ;
+val it = ["a","c","d"] : string list
+- remove_option("b", ["a","b","c","d"])val it = ["a","c","d"] : string list
+
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:11.6-16.39 Error: right-hand-side of clause doesn't agree with function result type [tycon mismatch]
+  expression:  string list option
+  result type:  string list
+  in declaration:
+    remove_option =
+      (fn (s,xs) =>
+            (case xs
+              of <pat> => <exp>
+               | <pat> => <exp>))
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]hw2provided.sml:13.20 Error: syntax error: inserting  EQUALOP
+
+uncaught exception Compile [Compile: "syntax error"]
+  raised at: ../compiler/Parse/main/smlfile.sml:15.24-15.46
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val tp = fn : 'a list -> 'a list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- remove_option("a", ["a","b","c","d"]);
+val it = SOME ["b","c","d"] : string list option
+- remove_option("a", ["a","a","b"]);
+val it = SOME ["b"] : string list option
+- exception IllegalMove
+val it = () : unit
+- = = stdIn:6.1 Error: unbound type constructor: -
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val tp = fn : 'a list -> 'a list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- remove_option("a", ["b","a","c"]);
+val it = SOME ["b","c"] : string list option
+- remove_option("a", ["b","a","a","c"]);
+val it = SOME ["b","a","c"] : string list option
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- val it = () : unit
+- = stdIn:3.1 Error: unbound type constructor: -
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- all_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],"Fred");
+val it = ["Fredrick","Freddie","F"] : string list
+- all_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],"Fred");
+val it = ["Fredrick","Freddie","F"] : string list
+- all_substitutions1([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeffrey"]],
+"Jeff");
+= val it = ["Jeffrey","Geoff","Jeffrey"] : string list
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:40.53-40.61 Error: unbound variable or constructor: fullName
+hw2provided.sml:48.36-48.44 Error: unbound variable or constructor: fullName
+hw2provided.sml:42.8-43.64 Error: unresolved flex record
+   (can't tell what fields there are besides #last)
+hw2provided.sml:38.2-52.7 Error: unresolved flex record
+   (can't tell what fields there are besides #middle)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:40.53-40.61 Error: unbound variable or constructor: fullName
+hw2provided.sml:48.36-48.44 Error: unbound variable or constructor: fullName
+hw2provided.sml:42.8-43.64 Error: unresolved flex record
+   (can't tell what fields there are besides #last)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+-              ../compiler/TopLevel/interact/evalloop.sml:44.55             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- stdIn:1.15-1.17 Error: syntax error: deleting  DOT DOT
+stdIn:1.57-1.77 Error: syntax error: deleting  COLON REAL DOT
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:42.8-43.64 Error: unresolved flex record (need to know the names of ALL the fields
+ in this context)
+  type: {last:'Y, middle:'X; 'Z}
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:42.40 Error: syntax error: inserting  RBRACE
+
+uncaught exception Compile [Compile: "syntax error"]
+  raised at: ../compiler/Parse/main/smlfile.sml:15.24-15.46
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+uncaught exception Compile [Compile: "syntax error"]
+  raised at: ../compiler/Parse/main/smlfile.sml:15.24-15.46
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- stdIn:2.10-2.27 Error: syntax error: deleting  EXCEPTION ID
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],
+{first="Fred", middle="W", last="Smith"});
+= val it =
+  [{first="Fredrick",last="Smith",middle="W"},
+   {first="Freddie",last="Smith",middle="W"},
+   {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+-    {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+- = stdIn:4.39-5.6 Error: syntax error: deleting  RBRACKET COLON LBRACE
+stdIn:5.18-5.24 Error: syntax error: deleting  COMMA ID
+stdIn:5.31-5.39 Error: syntax error: deleting  COMMA ID
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],
+{first="Fred", middle="W", last="Smith"});
+= val it =
+  [{first="Fred",last="Smith",middle="W"},
+   {first="Fredrick",last="Smith",middle="W"},
+   {first="Freddie",last="Smith",middle="W"},
+   {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+-    {first="Freddie",last="Smith",middle="W"},
+   {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+- = stdIn:4.44-5.5 Error: syntax error: deleting  RBRACE COMMA LBRACE
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],
+{first="Fred", middle="W", last="Smith"});
+= val it =
+  [{first="Fred",last="Smith",middle="W"},
+   {first="Fredrick",last="Smith",middle="W"},
+   {first="Freddie",last="Smith",middle="W"},
+   {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+-    {first="Freddie",last="Smith",middle="W"},
+   {first="F",last="Smith",middle="W"}]
+  : {first:string, last:string, middle:string} list
+- = stdIn:4.44-5.5 Error: syntax error: deleting  RBRACE COMMA LBRACE
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val all_substitutions2 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val it = () : unit
+- all_substitutions2([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeffrey"]],
+"Jeff");
+= val it = ["Jeffrey","Geoff","Jeffrey"] : string list
+- all_substitutions2([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeffrey"]],
+"Jeff");= val it = ["Jeffrey","Geoff","Jeffrey"] : string list
+
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:85.18-85.23 Error: unbound variable or constructor: Balck
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val all_substitutions2 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val card_color = fn : suit -> color
+val it = () : unit
+- card(Spades)
+= ;
+stdIn:2.1-2.5 Error: unbound variable or constructor: card
+- card(suit Spades)
+= ;
+stdIn:1.2-1.6 Error: unbound variable or constructor: card
+stdIn:1.7-1.11 Error: unbound variable or constructor: suit
+- card(Ace * Spades)
+= ;
+stdIn:1.2-1.6 Error: unbound variable or constructor: card
+stdIn:1.7-1.19 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         rank * suit
+  in expression:
+    Ace * Spades
+- card(rank Ace * suit Clubs)
+= ;
+stdIn:1.2-1.6 Error: unbound variable or constructor: card
+stdIn:1.18-5.2 Error: unbound variable or constructor: suit
+stdIn:1.7-1.11 Error: unbound variable or constructor: rank
+- card_color(Spades)
+= ;
+val it = Black : color
+- card_color(Hearts);
+val it = Red : color
+- card_color(Clubs);
+val it = Black : color
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val all_substitutions2 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val card_color = fn : suit -> color
+val card_value = fn : rank -> int
+val it = () : unit
+- card_value(Jack)
+= ;
+val it = 10 : int
+- val it = () : unit
+- = stdIn:5.1 Error: unbound type constructor: -
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:109.18 Warning: calling polyEqual
+hw2provided.sml:103.28 Warning: calling polyEqual
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val all_substitutions2 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val card_color = fn : suit -> color
+val card_value = fn : rank -> int
+val remove_card = fn : ''a list * ''a * ''a list -> ''a list
+val it = () : unit
+- val card_color = fn : suit -> color
+val card_value = fn : rank -> int
+val remove_card = fn : ''a list * ''a * ''a list -> ''a list
+val it = () : unit
+- = stdIn:2.21-2.30 Error: syntax error: deleting  COLON ID ARROW
+stdIn:3.1-3.17 Error: syntax error: deleting  VAL ID EQUALOP
+stdIn:3.18-3.22 Error: syntax error: deleting  FN COLON
+- 
+
+Process sml finished
+Standard ML of New Jersey v110.79 [built: Sun Oct  4 14:45:06 2015]
+- use "hw2provided.sml";
+[opening hw2provided.sml]
+hw2provided.sml:109.18 Warning: calling polyEqual
+hw2provided.sml:103.28 Warning: calling polyEqual
+val same_string = fn : string * string -> bool
+val remove_option = fn : string * string list -> string list option
+val all_substitutions1 = fn : string list list * string -> string list
+val all_substitutions2 = fn : string list list * string -> string list
+val similar_names = fn
+  : string list list * {first:string, last:string, middle:string}
+    -> {first:string, last:string, middle:string} list
+datatype suit = Clubs | Diamonds | Hearts | Spades
+datatype rank = Ace | Jack | King | Num of int | Queen
+type card = rank * suit
+datatype color = Black | Red
+datatype move = Discard of rank * suit | Draw
+exception IllegalMove
+val card_color = fn : suit -> color
+val card_value = fn : rank -> int
+val remove_card = fn : ''a list * ''a * exn -> ''a list
+val it = () : unit
+- remove_card([Clubs * Jack, Clubs * Queen], Clubs*Jack, IllegalMove);
+stdIn:2.13-2.42 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Jack
+stdIn:2.13-2.42 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Queen
+stdIn:2.12-2.68 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Jack
+- remove_card([(Clubs * Jack), (Clubs * Queen)], (Clubs*Jack), IllegalMove);
+stdIn:1.16-2.4 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Jack
+stdIn:2.8-2.21 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Queen
+stdIn:2.26-2.36 Error: operator and operand don't agree [overload conflict]
+  operator domain: [* ty] * [* ty]
+  operand:         suit * rank
+  in expression:
+    Clubs * Jack
+- remove_card([Jack, Queen], Jack, IllegalMove);
+val it = [Queen] : rank list
+- remove_card([Jack, Queen], Ace, IllegalMove);
+
+uncaught exception IllegalMove
+  raised at: hw2provided.sml:109.34
+- 

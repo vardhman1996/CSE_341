@@ -1,0 +1,94 @@
+fun is_older (date1 : int*int*int, date2 : int*int*int) =
+  if #3 date1 < #3 date2
+  then true
+  else if #3 date1 = #3 date2
+  then if #2 date1 < #2 date2
+       then true
+       else if #2 date1 = #2 date2
+       then if #1 date1 < #1 date2
+	    then true
+	    else false
+       else false
+  else false
+
+fun number_in_month (dateList : (int*int*int) list, month : int) =
+  if null dateList
+  then 0
+  else if (#2 (hd(dateList))) = month
+  then 1 + number_in_month(tl(dateList), month)
+  else 0 + number_in_month(tl(dateList), month)
+
+
+fun number_in_months (dateList : (int*int*int) list, months : int list) =
+  if null months
+  then 0
+  else number_in_month(dateList, hd(months)) + number_in_months(dateList, tl(months))
+
+							       
+fun dates_in_month (dateList : (int*int*int) list, month : int) =
+  if null dateList
+  then []
+  else if #2 (hd(dateList)) = month
+  then hd(dateList)::dates_in_month(tl(dateList) , month)
+  else dates_in_month(tl(dateList), month)
+
+fun dates_in_months (dateList : (int*int*int) list, months : int list) =
+  if null months
+  then []
+  else dates_in_month(dateList, hd(months)) @ dates_in_months(dateList, tl(months))
+    
+fun get_nth (stringList : string list, n : int) =
+  if n = 1
+  then hd(stringList)
+  else get_nth(stringList, n - 1)
+
+ val months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+fun date_to_string (date : int*int*int) =
+  get_nth(months, #2 date) ^ "-" ^ Int.toString(#1 date) ^ "-" ^ Int.toString(#3 date)  
+
+fun number_before_reaching_sum (sum : int, numList : int list) =
+  if sum - hd(numList) <= 0
+  then 0
+  else 1 + number_before_reaching_sum(sum - hd(numList), tl(numList))
+
+val monthNum = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+fun what_month (day : int) =
+  number_before_reaching_sum(day, monthNum) + 1
+
+fun month_range (day1 : int, day2: int) =
+  if day1 > day2
+  then []
+  else what_month(day1)::month_range(day1 + 1, day2)
+
+fun oldest (dateList : (int*int*int) list) =
+  if null dateList
+  then NONE
+  else
+      let
+	  fun oldest_nonEmpty (dateList : (int*int*int) list) =
+	    if null (tl dateList)
+	    then hd dateList
+	    else let val tl_ans = oldest_nonEmpty(tl dateList)
+		 in
+		     if is_older(hd dateList, tl_ans)
+		     then tl_ans
+		     else hd dateList
+		 end
+      in
+	  SOME (oldest_nonEmpty(dateList));
+      end
+
+fun cumulative_sum (numList : int list) =
+  if null numList
+  then []
+  else
+      let
+	  val curSum = sum(hd numList. tl numList);
+      in
+	  curSum::cumulative_sum(numList);
+      end
+
+fun sum (curSum : int, numList : int list) =
+  curSum + hd numList

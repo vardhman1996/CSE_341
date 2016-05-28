@@ -1,0 +1,79 @@
+(*  Part 1 test *)
+
+use "hw2.sml";
+
+val remove_option_test = [remove_option("a", ["a","b","c"]) = SOME(["b","c"]),
+			  remove_option("a", ["a"]) = SOME([]),
+			  remove_option("a", ["b","c"]) = NONE]
+
+val all_substitutions1_test = [all_substitutions1([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],"Fred") =  ["Fredrick","Freddie","F"],
+			       all_substitutions1([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeffrey"]],"Jeff") =  ["Jeffrey","Geoff","Jeffrey"],
+			       all_substitutions1([["a","b","c"], ["a","b"]], "d") = []]
+
+val all_substitutions2_test = [all_substitutions2([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]],"Fred") =  ["Fredrick","Freddie","F"],
+			       all_substitutions2([["Fred","Fredrick"],["Jeff","Jeffrey"],["Geoff","Jeff","Jeffrey"]],"Jeff") =  ["Jeffrey","Geoff","Jeffrey"],
+			       all_substitutions2([["a","b","c"], ["a","b"]], "d") = []]
+
+val similar_names_test = [similar_names([["Fred","Fredrick"],["Elizabeth","Betty"],["Freddie","Fred","F"]], {first="Fred", middle="W", last="Smith"}) =  [{first="Fred", last="Smith", middle="W"}, {first="Fredrick", last="Smith", middle="W"}, {first="Freddie", last="Smith", middle="W"}, {first="F", last="Smith", middle="W"}],
+			 similar_names([["a","b","c"], ["d","e","f"]], {first="g", middle="h", last="i"}) = [{first="g", middle="h", last="i"}]]
+
+(* These are just two tests for problem 2; you will want more.
+
+   Naturally these tests and your tests will use bindings defined 
+   in your solution, in particular the officiate function, 
+   so they will not type-check if officiate is not defined.
+ *)
+
+val card_color_test = [card_color((Ace, Clubs)) = Black,
+		       card_color((Jack, Diamonds)) = Red,
+		       card_color((Ace, Spades)) = Black,
+		       card_color((Jack, Hearts)) = Red]
+
+val card_value_test = [card_value((Ace, Clubs)) = 11,
+		       card_value((Jack, Diamonds)) = 10,
+		       card_value((Num 5, Hearts)) = 5]
+
+val cardList = [(Ace, Clubs), (Jack, Spades), (Queen, Hearts), (King, Diamonds), (Num 9, Spades)]
+			  
+val remove_card_test = [remove_card(cardList, (Ace, Clubs), IllegalMove) = tl cardList,
+			remove_card([hd cardList], (Ace, Clubs), IllegalMove) = []]
+
+val same_color_list = [(Ace, Clubs), (Jack, Clubs), (Queen, Clubs)]
+			   
+val all_same_color_test = [all_same_color(same_color_list) = true,
+			   all_same_color(cardList) = false,
+			   all_same_color([]) = true,
+			   all_same_color([(Ace, Clubs)]) = true]
+
+val sum_cards_test = [sum_cards(cardList) = 50,
+		      sum_cards(same_color_list) = 31,
+		      sum_cards([]) = 0]
+
+val score_test = [score(cardList, 55) = 5, score(same_color_list, 35) = 2, score([], 0) = 0]
+
+val c1 = [(Ace, Clubs), (Ace, Spades), (Ace, Clubs), (Ace, Spades)]
+
+val c2 = [(Ace, Spades), (Jack, Spades), (Num 2, Spades)]
+
+val officiate_test = [officiate(c1, [Draw,Draw,Draw,Draw,Draw], 42) = 5,
+		      officiate(tl c1, [Draw,Discard(Ace, Spades),Draw,Draw, Draw], 42) = 10,
+		      officiate(c2, [Draw, Draw, Draw], 25) = 1,
+		      officiate(c2, [Draw, Discard(Ace, Spades), Draw], 14) = 2
+		     ]
+
+fun provided_test1 () = (* correct behavior: raise IllegalMove *)
+    let val cards = [(Jack,Clubs),(Num(8),Spades)]
+	val moves = [Draw,Discard(Jack,Hearts)]
+    in
+	officiate(cards,moves,42)
+    end
+
+	
+fun provided_test2 () = (* correct behavior: return 5 *)
+    let val cards = [(Ace,Clubs),(Ace,Spades),(Ace,Clubs),(Ace,Spades)]
+	val moves = [Draw,Draw,Draw,Draw,Draw]
+    in
+ 	officiate(cards,moves,42)
+    end
+
+val providedTest2 = provided_test2() = 5

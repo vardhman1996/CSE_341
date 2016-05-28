@@ -1,0 +1,16 @@
+Enhancements:
+1) Gradual but faster movement of block on pressing the 'z' key.
+    Binded the 'z' to a proc and defined the function where the parent
+    function run was called. Scores were added for each time the key 'z'
+    was pressed to indicate a 'good' thing in the game to use a faster
+    block movement.
+
+2) Cheat as the cost of 200 points to remove the bottom two rows regardless
+   of how full they are.
+    Binded the 'p' to a proc that calls a newly defined function in the
+    board class. The remove_two function checks for the current score
+    if this score is greater than 200 then it removes any elements from
+    the last two rows and sets those positions to nil. Then it moves down
+    all the rows above it by iterating over the grid's list and moving
+    individual lists inside the grid list and then adds 2 new lists at the
+    top to clearly represent the grid.
