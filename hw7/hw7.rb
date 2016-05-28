@@ -67,6 +67,10 @@ class GeometryValue
     line_result = intersect(two_points_to_line(seg.x1,seg.y1,seg.x2,seg.y2))
     line_result.intersectWithSegmentAsLineResult seg
   end
+
+  def preprocess_prog
+    self
+  end
 end
 
 class NoPoints < GeometryValue
@@ -152,6 +156,22 @@ class LineSegment < GeometryValue
     @x2 = x2
     @y2 = y2
   end
+
+  def preprocess_prog
+    if real_close(x1, x2)
+      if real_close(y1, y2)
+        Point.new(x1, y1)
+      elsif y1 < y2
+        LineSegment.new(x2, y2, x1, y1)
+      else
+        self
+      end
+    elsif x1 < x2
+      LineSegment.new(x2, y2, x1, y1)
+    else
+      self
+    end
+  end
 end
 
 # Note: there is no need for getter methods for the non-value classes
@@ -173,6 +193,10 @@ class Let < GeometryExpression
     @s = s
     @e1 = e1
     @e2 = e2
+  end
+
+  def preprocess_prog
+    Let.new(@s, @e1.preprocess_prog, @e2.preprocess_prog)
   end
 end
 
@@ -196,5 +220,9 @@ class Shift < GeometryExpression
     @dx = dx
     @dy = dy
     @e = e
+  end
+
+  def preprocess_prog
+    Shift.new(@dx, @dy, @e.preprocess_prog)
   end
 end
